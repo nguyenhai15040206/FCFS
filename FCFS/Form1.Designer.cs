@@ -42,6 +42,11 @@ namespace FCFS
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblRSAVGTurnAround = new System.Windows.Forms.Label();
+            this.lblRSAVGAwaiting = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panelControlResult = new System.Windows.Forms.Panel();
             this.lbl_p1_turnaroundTime = new System.Windows.Forms.Label();
             this.panel_ex_1 = new System.Windows.Forms.Panel();
@@ -51,13 +56,16 @@ namespace FCFS
             this.lbl_p1 = new System.Windows.Forms.Label();
             this.gbInput = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.rbSJF_2 = new System.Windows.Forms.RadioButton();
+            this.rbSFJ_1 = new System.Windows.Forms.RadioButton();
+            this.rbFCFS = new System.Windows.Forms.RadioButton();
             this.btnResult = new System.Windows.Forms.Button();
             this.pProcessDetails = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.numP1Brust = new System.Windows.Forms.NumericUpDown();
             this.numP1Arrival = new System.Windows.Forms.NumericUpDown();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblP1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -65,17 +73,13 @@ namespace FCFS
             this.btnReset = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.numNumberProcess = new System.Windows.Forms.NumericUpDown();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblRSAVGAwaiting = new System.Windows.Forms.Label();
-            this.lblRSAVGTurnAround = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.gbResult.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage_GanttChart.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panelControlResult.SuspendLayout();
             this.gbInput.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -84,7 +88,6 @@ namespace FCFS
             ((System.ComponentModel.ISupportInitialize)(this.numP1Arrival)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberProcess)).BeginInit();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -117,10 +120,10 @@ namespace FCFS
             this.lblTitle.Location = new System.Drawing.Point(16, 11);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(380, 29);
+            this.lblTitle.Size = new System.Drawing.Size(722, 29);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "FCFS - First Come First Served";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Text = "FCFS - First Come First Served AND SJF - Shortest Job First";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel2
             // 
@@ -130,7 +133,7 @@ namespace FCFS
             this.panel2.Location = new System.Drawing.Point(0, 65);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1255, 549);
+            this.panel2.Size = new System.Drawing.Size(1255, 619);
             this.panel2.TabIndex = 1;
             // 
             // gbResult
@@ -144,7 +147,7 @@ namespace FCFS
             this.gbResult.Margin = new System.Windows.Forms.Padding(4);
             this.gbResult.Name = "gbResult";
             this.gbResult.Padding = new System.Windows.Forms.Padding(4);
-            this.gbResult.Size = new System.Drawing.Size(746, 549);
+            this.gbResult.Size = new System.Drawing.Size(746, 619);
             this.gbResult.TabIndex = 2;
             this.gbResult.TabStop = false;
             this.gbResult.Text = "Kết quả trả về";
@@ -194,7 +197,7 @@ namespace FCFS
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(9, 55);
+            this.label6.Location = new System.Drawing.Point(9, 58);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 23);
@@ -203,12 +206,13 @@ namespace FCFS
             // 
             // label3
             // 
+            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(58, 55);
+            this.label3.Location = new System.Drawing.Point(62, 58);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 23);
+            this.label3.Size = new System.Drawing.Size(19, 23);
             this.label3.TabIndex = 175;
             this.label3.Text = "0";
             this.label3.Visible = false;
@@ -249,8 +253,64 @@ namespace FCFS
             this.panel7.Location = new System.Drawing.Point(4, 185);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(738, 361);
+            this.panel7.Size = new System.Drawing.Size(738, 431);
             this.panel7.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.lblRSAVGTurnAround);
+            this.panel8.Controls.Add(this.lblRSAVGAwaiting);
+            this.panel8.Controls.Add(this.label11);
+            this.panel8.Controls.Add(this.label10);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 293);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(738, 138);
+            this.panel8.TabIndex = 2;
+            // 
+            // lblRSAVGTurnAround
+            // 
+            this.lblRSAVGTurnAround.AutoSize = true;
+            this.lblRSAVGTurnAround.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRSAVGTurnAround.ForeColor = System.Drawing.Color.Red;
+            this.lblRSAVGTurnAround.Location = new System.Drawing.Point(227, 49);
+            this.lblRSAVGTurnAround.Name = "lblRSAVGTurnAround";
+            this.lblRSAVGTurnAround.Size = new System.Drawing.Size(82, 28);
+            this.lblRSAVGTurnAround.TabIndex = 1;
+            this.lblRSAVGTurnAround.Text = "Kết quả";
+            // 
+            // lblRSAVGAwaiting
+            // 
+            this.lblRSAVGAwaiting.AutoSize = true;
+            this.lblRSAVGAwaiting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRSAVGAwaiting.ForeColor = System.Drawing.Color.Red;
+            this.lblRSAVGAwaiting.Location = new System.Drawing.Point(227, 11);
+            this.lblRSAVGAwaiting.Name = "lblRSAVGAwaiting";
+            this.lblRSAVGAwaiting.Size = new System.Drawing.Size(82, 28);
+            this.lblRSAVGAwaiting.TabIndex = 1;
+            this.lblRSAVGAwaiting.Text = "Kết quả";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Location = new System.Drawing.Point(13, 49);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(208, 28);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Average Turn around:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(13, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(210, 28);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Average waiting time:";
             // 
             // panelControlResult
             // 
@@ -267,7 +327,7 @@ namespace FCFS
             this.panelControlResult.Controls.Add(this.lbl_p1);
             this.panelControlResult.Location = new System.Drawing.Point(4, 3);
             this.panelControlResult.Name = "panelControlResult";
-            this.panelControlResult.Size = new System.Drawing.Size(731, 230);
+            this.panelControlResult.Size = new System.Drawing.Size(731, 284);
             this.panelControlResult.TabIndex = 1;
             // 
             // lbl_p1_turnaroundTime
@@ -348,31 +408,69 @@ namespace FCFS
             this.gbInput.Margin = new System.Windows.Forms.Padding(4);
             this.gbInput.Name = "gbInput";
             this.gbInput.Padding = new System.Windows.Forms.Padding(4);
-            this.gbInput.Size = new System.Drawing.Size(509, 549);
+            this.gbInput.Size = new System.Drawing.Size(509, 619);
             this.gbInput.TabIndex = 1;
             this.gbInput.TabStop = false;
             this.gbInput.Text = "Nhập thông tin";
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.rbSJF_2);
+            this.panel4.Controls.Add(this.rbSFJ_1);
+            this.panel4.Controls.Add(this.rbFCFS);
             this.panel4.Controls.Add(this.btnResult);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(4, 491);
+            this.panel4.Location = new System.Drawing.Point(4, 480);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(501, 54);
+            this.panel4.Size = new System.Drawing.Size(501, 135);
             this.panel4.TabIndex = 5;
+            // 
+            // rbSJF_2
+            // 
+            this.rbSJF_2.AutoSize = true;
+            this.rbSJF_2.Location = new System.Drawing.Point(12, 86);
+            this.rbSJF_2.Name = "rbSJF_2";
+            this.rbSJF_2.Size = new System.Drawing.Size(219, 32);
+            this.rbSJF_2.TabIndex = 6;
+            this.rbSJF_2.TabStop = true;
+            this.rbSJF_2.Text = "SJF không độc quyền";
+            this.rbSJF_2.UseVisualStyleBackColor = true;
+            // 
+            // rbSFJ_1
+            // 
+            this.rbSFJ_1.AutoSize = true;
+            this.rbSFJ_1.Location = new System.Drawing.Point(12, 48);
+            this.rbSFJ_1.Name = "rbSFJ_1";
+            this.rbSFJ_1.Size = new System.Drawing.Size(158, 32);
+            this.rbSFJ_1.TabIndex = 5;
+            this.rbSFJ_1.TabStop = true;
+            this.rbSFJ_1.Text = "SJF độc quyền";
+            this.rbSFJ_1.UseVisualStyleBackColor = true;
+            // 
+            // rbFCFS
+            // 
+            this.rbFCFS.AutoSize = true;
+            this.rbFCFS.Location = new System.Drawing.Point(12, 10);
+            this.rbFCFS.Name = "rbFCFS";
+            this.rbFCFS.Size = new System.Drawing.Size(76, 32);
+            this.rbFCFS.TabIndex = 4;
+            this.rbFCFS.TabStop = true;
+            this.rbFCFS.Text = "FCFS";
+            this.rbFCFS.UseVisualStyleBackColor = true;
             // 
             // btnResult
             // 
+            this.btnResult.BackColor = System.Drawing.Color.PowderBlue;
             this.btnResult.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnResult.Location = new System.Drawing.Point(4, 7);
+            this.btnResult.Location = new System.Drawing.Point(264, 7);
             this.btnResult.Margin = new System.Windows.Forms.Padding(4);
             this.btnResult.Name = "btnResult";
-            this.btnResult.Size = new System.Drawing.Size(493, 39);
+            this.btnResult.Size = new System.Drawing.Size(233, 119);
             this.btnResult.TabIndex = 3;
             this.btnResult.Text = "Kết quả";
-            this.btnResult.UseVisualStyleBackColor = true;
+            this.btnResult.UseVisualStyleBackColor = false;
             this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
             // pProcessDetails
@@ -381,18 +479,31 @@ namespace FCFS
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pProcessDetails.AutoScroll = true;
+            this.pProcessDetails.Controls.Add(this.label4);
             this.pProcessDetails.Controls.Add(this.numP1Brust);
             this.pProcessDetails.Controls.Add(this.numP1Arrival);
             this.pProcessDetails.Controls.Add(this.panel6);
             this.pProcessDetails.Controls.Add(this.label5);
-            this.pProcessDetails.Controls.Add(this.label4);
             this.pProcessDetails.Controls.Add(this.lblP1);
             this.pProcessDetails.Controls.Add(this.label2);
             this.pProcessDetails.Location = new System.Drawing.Point(4, 143);
             this.pProcessDetails.Margin = new System.Windows.Forms.Padding(4);
             this.pProcessDetails.Name = "pProcessDetails";
-            this.pProcessDetails.Size = new System.Drawing.Size(501, 341);
+            this.pProcessDetails.Size = new System.Drawing.Size(501, 329);
             this.pProcessDetails.TabIndex = 4;
+            this.pProcessDetails.Paint += new System.Windows.Forms.PaintEventHandler(this.pProcessDetails_Paint);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Gray;
+            this.label4.Location = new System.Drawing.Point(128, 52);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(134, 23);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Arrival time (ms)";
             // 
             // numP1Brust
             // 
@@ -440,7 +551,7 @@ namespace FCFS
             // 
             // panel6
             // 
-            this.panel6.Location = new System.Drawing.Point(4, 79);
+            this.panel6.Location = new System.Drawing.Point(4, 81);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(493, 2);
@@ -457,19 +568,6 @@ namespace FCFS
             this.label5.Size = new System.Drawing.Size(125, 23);
             this.label5.TabIndex = 2;
             this.label5.Text = "Burst time (ms)";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(127, 52);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(134, 23);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Arrival time (ms)";
-            this.label4.Visible = false;
             // 
             // lblP1
             // 
@@ -568,67 +666,11 @@ namespace FCFS
             0,
             0});
             // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.lblRSAVGTurnAround);
-            this.panel8.Controls.Add(this.lblRSAVGAwaiting);
-            this.panel8.Controls.Add(this.label11);
-            this.panel8.Controls.Add(this.label10);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 239);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(738, 122);
-            this.panel8.TabIndex = 2;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(13, 11);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(263, 35);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Average waiting time:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(13, 49);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(260, 35);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Average Turn around:";
-            // 
-            // lblRSAVGAwaiting
-            // 
-            this.lblRSAVGAwaiting.AutoSize = true;
-            this.lblRSAVGAwaiting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRSAVGAwaiting.ForeColor = System.Drawing.Color.Red;
-            this.lblRSAVGAwaiting.Location = new System.Drawing.Point(227, 11);
-            this.lblRSAVGAwaiting.Name = "lblRSAVGAwaiting";
-            this.lblRSAVGAwaiting.Size = new System.Drawing.Size(103, 35);
-            this.lblRSAVGAwaiting.TabIndex = 1;
-            this.lblRSAVGAwaiting.Text = "Kết quả";
-            // 
-            // lblRSAVGTurnAround
-            // 
-            this.lblRSAVGTurnAround.AutoSize = true;
-            this.lblRSAVGTurnAround.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRSAVGTurnAround.ForeColor = System.Drawing.Color.Red;
-            this.lblRSAVGTurnAround.Location = new System.Drawing.Point(227, 49);
-            this.lblRSAVGTurnAround.Name = "lblRSAVGTurnAround";
-            this.lblRSAVGTurnAround.Size = new System.Drawing.Size(82, 28);
-            this.lblRSAVGTurnAround.TabIndex = 1;
-            this.lblRSAVGTurnAround.Text = "Kết quả";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 614);
+            this.ClientSize = new System.Drawing.Size(1255, 684);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -642,11 +684,15 @@ namespace FCFS
             this.gbResult.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_GanttChart.ResumeLayout(false);
+            this.tabPage_GanttChart.PerformLayout();
             this.panel7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panelControlResult.ResumeLayout(false);
             this.panelControlResult.PerformLayout();
             this.gbInput.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.pProcessDetails.ResumeLayout(false);
             this.pProcessDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numP1Brust)).EndInit();
@@ -654,8 +700,6 @@ namespace FCFS
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numNumberProcess)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -676,7 +720,6 @@ namespace FCFS
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblP1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.NumericUpDown numP1Arrival;
         private System.Windows.Forms.NumericUpDown numP1Brust;
@@ -703,6 +746,10 @@ namespace FCFS
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblRSAVGTurnAround;
         private System.Windows.Forms.Label lblRSAVGAwaiting;
+        private System.Windows.Forms.RadioButton rbSFJ_1;
+        private System.Windows.Forms.RadioButton rbFCFS;
+        private System.Windows.Forms.RadioButton rbSJF_2;
+        private System.Windows.Forms.Label label4;
     }
 }
 

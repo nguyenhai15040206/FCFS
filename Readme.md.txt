@@ -33,3 +33,28 @@ P1: 24 - 24 = 0
 P2: 26 - 3 = 23
 P3: 28 - 3 = 25
 AVG: 16 
+
+
+==========================================
+SJF: Shortest Job First - chọn công việc ngắn nhất làm
+
+ P                    Thời gian đến (Arrival time)         Thời gian sử dụng CPU (Burst time)
+ P1								0										6						
+ P2								1										8
+ P3								2										4
+ P4								3										2
+ 
+  Tính thời gian đáp ứng trung bình, tigna hoàn thành trung bình, Tgian chờ Trung bình
+  
+   Biểu đồ Gantt:
+
+- Độc quyền: nào vào trước -> chạy hết tiến trình -> xét tg nào sử dụng ít hơn để chạy tiếp
+P1						P4						P3			P2						
+ 
+0						6						8			12			20			
+  
+- Không độc quyền: Ngắt giữa chừng -> canh tgian sử dụng CPU của từng tiến trình -> Tiến trình nào nhỏ chạy trước
+ 
+P1						P4						P1			P3			P2				
+ 
+0						3						5			8			12			20

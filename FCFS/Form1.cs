@@ -165,22 +165,49 @@ namespace FCFS
                 start_c = new int[2000];
                 end_c = new int[2000];
                 proc_c = new int[2000];
-
                 for (int i = 0; i < (int)numNumberProcess.Value; i++)
                 {
                     arrivalTime[i] = (int)arrival[i].Value;
                     cpuBrustTime[i] = (int)brust[i].Value;
                     priority[i] = -1;
                 }
+                if (rbFCFS.Checked)
+                {
+                    //
+                    ChangeName(1);
+                    SetColor();
+                    SetNames();
+                    SetTurns();
+                    SetWaits();
+                    GeneralGantt();
+                    ResultAVG();
+                    return;
+                }
+                if (rbSFJ_1.Checked)
+                {
+                    ChangeName(2);
+                    SetColor();
+                    SetNames();
+                    SetTurns();
+                    SetWaits();
+                    GeneralGantt();
+                    ResultAVG();
+                    return;
+                }
+                if (rbSJF_2.Checked)
+                {
+                    ChangeName(3);
+                    SetColor();
+                    SetNames();
+                    SetTurns();
+                    SetWaits();
+                    GeneralGantt();
+                    ResultAVG();
+                    return;
+                }
 
-                //
-                ChangeName();
-                SetColor();
-                SetNames();
-                SetTurns();
-                SetWaits();
-                GeneralGantt();
-                ResultAVG();
+                MessageBox.Show("Vui lòng chọn thuật toán điều phối!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnResult.Focus();
 
             }
             catch
@@ -192,25 +219,76 @@ namespace FCFS
         }
 
         #region Method 
-        public void ChangeName()
+        public void ChangeName(int intTypeAlgorithm)
         {
-            FCFS_Algorithm sch = new FCFS_Algorithm(arrivalTime, cpuBrustTime, priority, (int)numNumberProcess.Value);
-            sch.ComputeFCFS();
-            lastValid_c = sch.lastValid;
-            avg_turnaround_c = sch.avg_turnaround;
-            avg_waiting_c = sch.avg_waiting;
-            for (int i = 0; i < sch.lastValid; i++)
+            if (intTypeAlgorithm == 1)
             {
-                start_c[i] = sch.start[i];
-                end_c[i] = sch.end[i];
-                proc_c[i] = sch.proc[i];
+                // FCFS
+                FCFS_Algorithm sch = new FCFS_Algorithm(arrivalTime, cpuBrustTime, priority, (int)numNumberProcess.Value);
+                sch.ComputeFCFS();
+                lastValid_c = sch.lastValid;
+                avg_turnaround_c = sch.avg_turnaround;
+                avg_waiting_c = sch.avg_waiting;
+                for (int i = 0; i < sch.lastValid; i++)
+                {
+                    start_c[i] = sch.start[i];
+                    end_c[i] = sch.end[i];
+                    proc_c[i] = sch.proc[i];
+                }
+                //
+                for (int i = 0; i < (int)numNumberProcess.Value; i++)
+                {
+                    waitingTime_c[i] = sch.waitingTime[i];
+                    turnaroundTime_c[i] = sch.turnaroundTime[i];
+                }
             }
-            //
-            for (int i = 0; i < (int)numNumberProcess.Value; i++)
+            if (intTypeAlgorithm == 2)
             {
-                waitingTime_c[i] = sch.waitingTime[i];
-                turnaroundTime_c[i] = sch.turnaroundTime[i];
+                //SJF none - Premptive độc quyền
+                FCFS_Algorithm sch = new FCFS_Algorithm(arrivalTime, cpuBrustTime, priority, (int)numNumberProcess.Value);
+                sch.ComputerSJF_N();
+                lastValid_c = sch.lastValid;
+                avg_turnaround_c = sch.avg_turnaround;
+                avg_waiting_c = sch.avg_waiting;
+                for (int i = 0; i < sch.lastValid; i++)
+                {
+                    start_c[i] = sch.start[i];
+                    end_c[i] = sch.end[i];
+                    proc_c[i] = sch.proc[i];
+                }
+                //
+                for (int i = 0; i < (int)numNumberProcess.Value; i++)
+                {
+                    waitingTime_c[i] = sch.waitingTime[i];
+                    turnaroundTime_c[i] = sch.turnaroundTime[i];
+                }
             }
+            if (intTypeAlgorithm == 3)
+            {
+                //SJF none - Premptive độc quyền
+                FCFS_Algorithm sch = new FCFS_Algorithm(arrivalTime, cpuBrustTime, priority, (int)numNumberProcess.Value);
+                sch.ComputerSJF_P();
+                lastValid_c = sch.lastValid;
+                avg_turnaround_c = sch.avg_turnaround;
+                avg_waiting_c = sch.avg_waiting;
+                for (int i = 0; i < sch.lastValid; i++)
+                {
+                    start_c[i] = sch.start[i];
+                    end_c[i] = sch.end[i];
+                    proc_c[i] = sch.proc[i];
+                }
+                //
+                for (int i = 0; i < (int)numNumberProcess.Value; i++)
+                {
+                    waitingTime_c[i] = sch.waitingTime[i];
+                    turnaroundTime_c[i] = sch.turnaroundTime[i];
+                }
+            }
+            else
+            {
+                return;
+            }
+
         }
 
         public void SetWaits()
@@ -400,6 +478,7 @@ namespace FCFS
                 n2.Size = this.label5.Size;
                 n2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
                 n2.Location = new Point(n.Location.X + leng, n.Location.Y);
+                n2.TextAlign = this.label5.TextAlign;
                 n2.ForeColor = System.Drawing.Color.Gray;
                 n2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                 n2.Visible = true;
@@ -430,6 +509,11 @@ namespace FCFS
 
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pProcessDetails_Paint(object sender, PaintEventArgs e)
         {
 
         }
