@@ -129,7 +129,7 @@ namespace FCFS
             lastValid = idx;
         }
         
-        // không đọc quyền
+        // đọc quyền
         public void ComputerSJF_N()
         {
             List<Process> listProcess = new List<Process>(numProcess);
@@ -165,7 +165,8 @@ namespace FCFS
                 }
                 while (ready.Count != 0)
                 {
-                    Process.Sort3(ready);
+                    
+                    Process.Sort4(ready);
                     Process readyProcess = ready[0];
                     ready.RemoveAt(0);
                     start[idx] = cnt;
@@ -175,15 +176,19 @@ namespace FCFS
                     turnaroundTime[idx] = end[idx] - readyProcess.arrival;
                     idx++;
                     cnt += readyProcess.brustTime;
-                    for (int i = 0, j = 0; i < listProcess.Count; i++)
+                    List<Process> listTmp = new List<Process>();
+                    foreach (var item in listProcess)
                     {
-                        if (listProcess[j].arrival <= cnt)
+                        if (item.brustTime <= readyProcess.brustTime)
                         {
-                            ready.Add(listProcess[j]);
-                            listProcess.RemoveAt(j);
+                            ready.Add(item);
                         }
-                        else j++;
+                        else
+                        {
+                            listTmp.Add(item);
+                        }
                     }
+                    listProcess = listTmp;
                 }
 
             }
@@ -209,6 +214,7 @@ namespace FCFS
         }
 
 
+        // khoong ddoocj quyen
         public void ComputerSJF_P()
         {
             List<Process> p = new List<Process>(numProcess);

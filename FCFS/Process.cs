@@ -81,5 +81,21 @@ namespace FCFS
                 }
             }
         }
+
+        public static void Sort4(List<Process> l)
+        {
+            for (int i = 0; i < l.Count; i++)
+            {
+                for (int j = 0; j < l.Count; j++)
+                {
+                    if (l[i].brustTime <= l[j].brustTime)
+                    {
+                        Process temp = l[i];
+                        l[i] = l[j];
+                        l[j] = temp;
+                    }
+                }
+            }
+        }
     }
 }

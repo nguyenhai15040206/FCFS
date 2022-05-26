@@ -46,7 +46,7 @@ SJF: Shortest Job First - chọn công việc ngắn nhất làm
  
   Tính thời gian đáp ứng trung bình, tigna hoàn thành trung bình, Tgian chờ Trung bình
   
-   Biểu đồ Gantt:
+  Biểu đồ Gantt:
 
 - Độc quyền: nào vào trước -> chạy hết tiến trình -> xét tg nào sử dụng ít hơn để chạy tiếp
 P1						P4						P3			P2						

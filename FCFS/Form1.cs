@@ -35,6 +35,7 @@ namespace FCFS
         public Form1()
         {
             InitializeComponent();
+            btnResult.Enabled = false;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -55,6 +56,8 @@ namespace FCFS
                     names();
                     arrivals();
                     brusts();
+                    btnNext.Enabled = false;
+                    btnResult.Enabled = true;
                 }
             }
             catch
@@ -118,6 +121,7 @@ namespace FCFS
                 num.Name = "ProcessArrivalTime" + (i).ToString();
                 num.BackColor = numOld.BackColor;
                 num.Font = numOld.Font;
+                num.Value = i;
                 num.ReadOnly = true;
                 arrival[i] = num;
                 this.pProcessDetails.Controls.Add(num);
@@ -148,6 +152,7 @@ namespace FCFS
                 num.Name = "ProcessBrust" + (i + 1).ToString();
                 num.BackColor = numOld.BackColor;
                 num.Font = numOld.Font;
+                num.Value = i + 1;
                 num.ReadOnly = true;
                 brust[i] = num;
                 this.pProcessDetails.Controls.Add(num);
@@ -181,6 +186,8 @@ namespace FCFS
                     SetWaits();
                     GeneralGantt();
                     ResultAVG();
+                    btnResult.Enabled = false;
+                    btnNext.Enabled = false;
                     return;
                 }
                 if (rbSFJ_1.Checked)
@@ -192,6 +199,8 @@ namespace FCFS
                     SetWaits();
                     GeneralGantt();
                     ResultAVG();
+                    btnResult.Enabled = false;
+                    btnNext.Enabled = false; 
                     return;
                 }
                 if (rbSJF_2.Checked)
@@ -203,6 +212,8 @@ namespace FCFS
                     SetWaits();
                     GeneralGantt();
                     ResultAVG();
+                    btnResult.Enabled = false;
+                    btnNext.Enabled = false;
                     return;
                 }
 
@@ -210,7 +221,7 @@ namespace FCFS
                 btnResult.Focus();
 
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("Vui lòng làm mới lại tiến trình và thực thi lại!", "Lỗi thực thi FCFS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnReset.Focus();
@@ -368,7 +379,7 @@ namespace FCFS
         public void SetColor()
         {
             colors = new Color[15];
-            colors[0] = Color.Red;
+            colors[0] = label9.BackColor;
             colors[1] = Color.Yellow;
             colors[2] = Color.Violet;
             colors[3] = Color.Blue;
@@ -410,11 +421,6 @@ namespace FCFS
             this.label9.Size = new System.Drawing.Size(leng, 26);
             p = proc_c[0];
             //==============
-            Label flag = new Label();
-            flag = this.label8;
-            flag.Location = new Point(this.label8.Location.X - 41 + leng, this.label8.Location.Y);
-            flag.Visible = true;
-            this.tabPage_GanttChart.Controls.Add(flag);
 
             Label n = new Label();
             n = this.label3;
@@ -436,7 +442,6 @@ namespace FCFS
                 this.label9.BackColor = colors[p % 15];
                 this.label9.Text = name;
             }
-
             // xu ly voi n Process
             lb = this.label9;
             x = x + leng;
@@ -468,12 +473,7 @@ namespace FCFS
                 this.tabPage_GanttChart.Controls.Add(lb2);
 
                 //==========
-                Label flag2 = new Label();
                 Label n2 = new Label();
-                flag2.BackColor = Color.Black;
-                flag2.Size = this.label8.Size;
-                flag2.Location = new Point(flag.Location.X + leng, flag.Location.Y);
-                flag2.Visible = true;
 
                 n2.Size = this.label5.Size;
                 n2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))); ;
@@ -483,12 +483,10 @@ namespace FCFS
                 n2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
                 n2.Visible = true;
                 n2.Text = end_c[i].ToString();
-                this.tabPage_GanttChart.Controls.Add(flag2);
                 this.tabPage_GanttChart.Controls.Add(n2);
                 //=================================================
                 lb = lb2;
                 n = n2;
-                flag = flag2;
             }
         }
 
@@ -500,14 +498,6 @@ namespace FCFS
         }
         #endregion
 
-
-
-
-
-
-
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -517,5 +507,114 @@ namespace FCFS
         {
 
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            // tính toán kết quả
+            btnResult.Enabled = false;
+            btnNext.Enabled = true;
+            numNumberProcess.Value = 1;
+            cpuBrustTime = new int[0];
+            arrivalTime = new int [0];
+            arrival = new NumericUpDown[0];
+            brust = new NumericUpDown[0];
+            colors = new Color[0];
+            waitingTime_c = new int[0];
+            turnaroundTime_c = new int[0];
+            start_c = new int[0];
+            end_c = new int[0];
+            proc_c = new int[0];
+            rbFCFS.Checked = false;
+            rbSFJ_1.Checked = false;
+            rbSJF_2.Checked = false;
+            this.lblRSAVGAwaiting.Text = "Kết quả";
+            this.lblRSAVGTurnAround.Text =  "Kết quả";
+
+            //
+            foreach (Control item in pProcessDetails.Controls.OfType<Label>().ToList())
+            {
+                if(item.Name == "lblP1" || item.Name== "label4" || item.Name== "label5" || item.Name== "label2")
+                {
+                    continue;
+                }
+                else
+                {
+                    pProcessDetails.Controls.Remove(item);
+                }
+            }
+            foreach (Control item in pProcessDetails.Controls.OfType<NumericUpDown>().ToList())
+            {
+                if (item.Name == "numP1Arrival" || item.Name == "numP1Brust")
+                {
+                    numP1Arrival.Value = 0;
+                    numP1Brust.Value = 1;
+                    continue;
+                }
+                else
+                {
+                    pProcessDetails.Controls.Remove(item);
+                }
+            }
+
+            ///
+            foreach (Control item in tabPage_GanttChart.Controls.OfType<Label>().ToList())
+            {
+                if (item.Name == "label9" || item.Name == "label3" || item.Name == "label6" || item.Name == "label8" || item.Name == "label7")
+                {
+                    label6.Text = "0";
+                    if (item.Name == "label9")
+                    {
+                        this.label9.BackColor = System.Drawing.SystemColors.Highlight;
+                        this.label9.ForeColor = System.Drawing.Color.WhiteSmoke;
+                        this.label9.Location = new System.Drawing.Point(19, 11);
+                        this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label9.Size = new System.Drawing.Size(56, 21);
+                        this.label9.Text = "P1";
+                    }
+                    if (item.Name== "label3")
+                    {
+                        this.label3.ForeColor = System.Drawing.Color.Gray;
+                        this.label3.Location = new System.Drawing.Point(55, 54);
+                        this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+                        this.label3.Size = new System.Drawing.Size(30, 23);
+                        this.label3.Text = "0";
+                        this.label3.Visible = false;
+                    }
+                    continue;
+                }
+                else
+                {
+                    tabPage_GanttChart.Controls.Remove(item);
+                }
+            }
+
+            ///
+            foreach (Control item in panelControlResult.Controls.OfType<Label>().ToList())
+            {
+                if (item.Name == "lbl_waitingTime_l" || item.Name == "lbl_turnaroundTime_l" || item.Name == "lbl_p1_waitingTime" 
+                    || item.Name == "lbl_p1_turnaroundTime" || item.Name == "lbl_p1"|| item.Name == "panel_ex_1")
+                {
+                    this.lbl_p1_waitingTime.Text = "0";
+                    this.lbl_p1_turnaroundTime.Text = "0";
+                    continue;
+                }
+                else
+                {
+                    panelControlResult.Controls.Remove(item);
+                }
+            }
+            foreach (Control item in panelControlResult.Controls.OfType<Panel>().ToList())
+            {
+                if (item.Name == "panel_ex_1")
+                {
+                    continue;
+                }
+                else
+                {
+                    panelControlResult.Controls.Remove(item);
+                }
+            }
+        }
+
     }
 }
